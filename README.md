@@ -36,37 +36,37 @@ Gigabroom is a fast, interactive CLI tool that finds and removes build artifacts
 
 | Category | Examples | Safe? |
 |----------|----------|-------|
-| 🦀 **Rust** | \`target/\` | ✅ Safe |
-| 📦 **Node.js** | \`node_modules/\` | ✅ Safe |
-| 🐍 **Python** | \`__pycache__/\`, \`.venv/\` | ✅ Safe |
-| ☕ **Java** | Maven \`target/\`, Gradle \`build/\` | ✅ Safe |
-| 🐘 **PHP** | \`vendor/\` | ✅ Safe |
-| 💎 **Ruby** | \`vendor/bundle/\` | ✅ Safe |
-| 🐹 **Go** | \`vendor/\` | ✅ Safe |
+| 🦀 **Rust** | `target/` | ✅ Safe |
+| 📦 **Node.js** | `node_modules/` | ✅ Safe |
+| 🐍 **Python** | `__pycache__/`, `.venv/` | ✅ Safe |
+| ☕ **Java** | Maven `target/`, Gradle `build/` | ✅ Safe |
+| 🐘 **PHP** | `vendor/` | ✅ Safe |
+| 💎 **Ruby** | `vendor/bundle/` | ✅ Safe |
+| 🐹 **Go** | `vendor/` | ✅ Safe |
 | ⚙️ **C/C++** | Build artifacts | ✅ Safe |
-| 🔷 **.NET** | \`bin/\`, \`obj/\`, \`packages/\` | ✅ Safe |
-| 🦢 **Swift** | \`.build/\`, \`DerivedData/\` | ✅ Safe |
-| 💡 **IDE** | \`.idea/\`, \`.vscode/\`, \`.vs/\` | ✅ Safe |
-| 🗑️ **OS Junk** | \`.DS_Store\`, \`Thumbs.db\` | ✅ Safe |
-| 📝 **Temp Files** | \`*.log\`, \`*.tmp\` | ✅ Safe |
-| 📁 **Build** | \`build/\`, \`dist/\`, \`out/\` | ✅ Safe |
+| 🔷 **.NET** | `bin/`, `obj/`, `packages/` | ✅ Safe |
+| 🦢 **Swift** | `.build/`, `DerivedData/` | ✅ Safe |
+| 💡 **IDE** | `.idea/`, `.vscode/`, `.vs/` | ✅ Safe |
+| 🗑️ **OS Junk** | `.DS_Store`, `Thumbs.db` | ✅ Safe |
+| 📝 **Temp Files** | `*.log`, `*.tmp` | ✅ Safe |
+| 📁 **Build** | `build/`, `dist/`, `out/` | ✅ Safe |
 | ⚠️ **Package Caches** | npm, pip, Maven global caches | ⚠️ Dangerous |
 
 ## 📦 Installation
 
 ### Via Cargo (Recommended)
 
-\`\`\`bash
+```bash
 cargo install gigabroom
-\`\`\`
+```
 
 ### From Source
 
-\`\`\`bash
+```bash
 git clone https://github.com/kurkanduk/gigabroom
 cd gigabroom
 cargo install --path .
-\`\`\`
+```
 
 ### Binary Releases
 
@@ -78,9 +78,9 @@ Download pre-built binaries from the [releases page](https://github.com/kurkandu
 
 Simply run gigabroom to launch the interactive menu:
 
-\`\`\`bash
+```bash
 gigabroom
-\`\`\`
+```
 
 Navigate with arrow keys, select with Space, confirm with Enter!
 
@@ -88,94 +88,94 @@ Navigate with arrow keys, select with Space, confirm with Enter!
 
 Scan the current directory:
 
-\`\`\`bash
+```bash
 gigabroom scan
-\`\`\`
+```
 
 Scan a specific directory with custom depth:
 
-\`\`\`bash
+```bash
 gigabroom scan ~/projects --max-depth 5
-\`\`\`
+```
 
 Clean specific categories:
 
-\`\`\`bash
+```bash
 gigabroom clean --category rust node python
-\`\`\`
+```
 
 Clean everything without confirmation (be careful!):
 
-\`\`\`bash
+```bash
 gigabroom clean --all --yes
-\`\`\`
+```
 
 Dry run (preview without deleting):
 
-\`\`\`bash
+```bash
 gigabroom clean --all --dry-run
-\`\`\`
+```
 
 ## ⌨️ Keyboard Shortcuts
 
 In interactive mode:
 
-- \`↑\` / \`↓\` - Navigate items
-- \`Space\` - Select/deselect current item
-- \`Enter\` - Confirm selection
-- \`Esc\` - Cancel/go back
-- \`PgUp\` / \`PgDn\` - Quick navigation
+- `↑` / `↓` - Navigate items
+- `Space` - Select/deselect current item
+- `Enter` - Confirm selection
+- `Esc` - Cancel/go back
+- `PgUp` / `PgDn` - Quick navigation
 
 ## 🔧 Advanced Usage
 
 ### Cache Management
 
-Cache is stored at \`~/.gigabroom-cache.json\` (valid for 5 minutes)
+Cache is stored at `~/.gigabroom-cache.json` (valid for 5 minutes)
 
 Clear cache:
-\`\`\`bash
+```bash
 gigabroom cache clear
-\`\`\`
+```
 
 View cache info:
-\`\`\`bash
+```bash
 gigabroom cache info
-\`\`\`
+```
 
 ### Performance Tips
 
 1. **Use Spotlight on macOS** - Much faster than filesystem walk:
-   \`\`\`bash
+   ```bash
    gigabroom scan --index
-   \`\`\`
+   ```
 
 2. **Limit scan depth** - Faster scans for shallow projects:
-   \`\`\`bash
+   ```bash
    gigabroom scan --max-depth 3
-   \`\`\`
+   ```
 
 3. **Use size filters** - Skip small files:
-   \`\`\`bash
+   ```bash
    gigabroom scan --min-size 10MB
-   \`\`\`
+   ```
 
 ### JSON Output
 
 For scripting and automation:
 
-\`\`\`bash
+```bash
 gigabroom scan --json > results.json
-\`\`\`
+```
 
 ## 🛡️ Safety Features
 
 ### What's Safe to Delete?
 
 ✅ **Always Safe:**
-- Project build outputs (\`target/\`, \`build/\`, \`dist/\`)
-- Project dependencies (\`node_modules/\`, \`vendor/\`)
-- IDE caches (\`.idea/\`, \`.vscode/\`)
-- Temporary files (\`*.log\`, \`*.tmp\`)
+- Project build outputs (`target/`, `build/`, `dist/`)
+- Project dependencies (`node_modules/`, `vendor/`)
+- IDE caches (`.idea/`, `.vscode/`)
+- Temporary files (`*.log`, `*.tmp`)
 
 ⚠️ **Use Caution:**
 - Package manager global caches (requires re-download for all projects)
@@ -183,7 +183,7 @@ gigabroom scan --json > results.json
 ### Built-in Protections
 
 1. **Confirmation Prompts** - Always asks before deleting
-2. **Dry Run Mode** - Preview deletions with \`--dry-run\`
+2. **Dry Run Mode** - Preview deletions with `--dry-run`
 3. **Detailed Summaries** - See exactly what will be removed
 4. **Warning Labels** - Dangerous operations are clearly marked
 5. **No System Files** - Only targets known build artifacts
