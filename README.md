@@ -3,6 +3,9 @@
 **Sweep away gigabytes of build artifacts** - the ultimate disk space cleaner for developers.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform: macOS](https://img.shields.io/badge/Platform-macOS-blue.svg)](https://www.apple.com/macos/)
+
+> **⚠️ Note**: Currently supports macOS only. Linux and Windows support coming soon!
 
 Gigabroom is a fast, interactive CLI tool that finds and removes build artifacts, dependency caches, and temporary files from your development projects. Reclaim tens of gigabytes of disk space with just a few keystrokes!
 
