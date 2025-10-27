@@ -1,0 +1,21 @@
+[package]
+name = "gigabroom"
+version = "0.1.0"
+edition = "2021"
+authors = ["kurkanduk"]
+description = "🧹 Sweep away gigabytes of build artifacts - the ultimate disk space cleaner for developers"
+license = "MIT"
+repository = "https://github.com/kurkanduk/gigabroom"
+keywords = ["cleanup", "disk-space", "build-artifacts", "developer-tools", "cargo"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+walkdir = "2.5"
+colored = "2.1"
+indicatif = "0.17"
+dialoguer = "0.11"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rayon = "1.10"
+chrono = { version = "0.4", features = ["serde"] }
